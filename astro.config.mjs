@@ -7,4 +7,6 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
+  site: 'https://malindival.github.io',
+  base: '/Portfolio-Astro',
 });
