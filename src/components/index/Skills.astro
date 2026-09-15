@@ -1,107 +1,71 @@
+---
+const base = import.meta.env.BASE_URL;
+---
 <section class="py-16 px-6 max-w-6xl mx-auto text-center">
   <h2 class="text-3xl font-bold mb-10">Compétences</h2>
   <h3 class="text-2xl font-bold mb-10">Langages</h3>
 <div class="flex flex-wrap justify-center gap-6">
   <span class="bg-gray-800 px-4 py-2 rounded-lg flex items-center gap-2">
-    <!-- C# Logo -->
-    <svg width="24" height="24" viewBox="0 0 32 32" fill="none">
-      <circle cx="16" cy="16" r="16" fill="#512BD4"/>
-      <text x="16" y="21" text-anchor="middle" fill="#fff" font-size="13" font-family="Arial">C#</text>
-    </svg>
+    <img src={`${base}/icons/csharp.svg`} alt="C#" width="24" height="24" />
     C#
   </span>
   <span class="bg-gray-800 px-4 py-2 rounded-lg flex items-center gap-2">
-    <!-- Go Logo -->
-    <svg width="24" height="24" viewBox="0 0 32 32" fill="none">
-      <circle cx="16" cy="16" r="16" fill="#00ADD8"/>
-      <text x="16" y="21" text-anchor="middle" fill="#fff" font-size="13" font-family="Arial">Go</text>
-    </svg>
+    <img src={`${base}/icons/go.svg`} alt="Go" width="24" height="24" />
     Go
   </span>
   <span class="bg-gray-800 px-4 py-2 rounded-lg flex items-center gap-2">
-    <!-- PHP Logo -->
-    <svg width="24" height="24" viewBox="0 0 32 32" fill="none">
-      <ellipse cx="16" cy="16" rx="16" ry="12" fill="#777BB4"/>
-      <text x="16" y="21" text-anchor="middle" fill="#fff" font-size="13" font-family="Arial">PHP</text>
-    </svg>
+    <img src={`${base}/icons/php.svg`} alt="PHP" width="24" height="24" />
     PHP
   </span>
   <span class="bg-gray-800 px-4 py-2 rounded-lg flex items-center gap-2">
-    <!-- HTML Logo -->
-    <svg width="24" height="24" viewBox="0 0 32 32" fill="none">
-      <polygon points="6,4 26,4 24,28 16,32 8,28" fill="#E34F26"/>
-      <text x="16" y="23" text-anchor="middle" fill="#fff" font-size="10" font-family="Arial">HTML</text>
-    </svg>
+    <img src={`${base}/icons/html5.svg`} alt="HTML" width="24" height="24" />
     HTML
   </span>
   <span class="bg-gray-800 px-4 py-2 rounded-lg flex items-center gap-2">
-    <!-- CSS Logo -->
-    <svg width="24" height="24" viewBox="0 0 32 32" fill="none">
-      <polygon points="6,4 26,4 24,28 16,32 8,28" fill="#1572B6"/>
-      <text x="16" y="23" text-anchor="middle" fill="#fff" font-size="10" font-family="Arial">CSS</text>
-    </svg>
+    <img src={`${base}/icons/css3.svg`} alt="CSS" width="24" height="24" />
     CSS
   </span>
   <span class="bg-gray-800 px-4 py-2 rounded-lg flex items-center gap-2">
-    <!-- JavaScript Logo -->
-    <svg width="24" height="24" viewBox="0 0 32 32" fill="none">
-      <rect x="4" y="4" width="24" height="24" rx="4" fill="#F7DF1E"/>
-      <text x="16" y="21" text-anchor="middle" fill="#000" font-size="11" font-family="Arial">JS</text>
-    </svg>
+    <img src={`${base}/icons/javascript.svg`} alt="JavaScript" width="24" height="24" />
     JavaScript
   </span>
   <span class="bg-gray-800 px-4 py-2 rounded-lg flex items-center gap-2">
-    <!-- TypeScript Logo -->
-    <svg width="24" height="24" viewBox="0 0 32 32" fill="none">
-      <rect x="4" y="4" width="24" height="24" rx="4" fill="#3178C6"/>
-      <text x="16" y="21" text-anchor="middle" fill="#fff" font-size="10" font-family="Arial">TS</text>
-    </svg>
+    <img src={`${base}/icons/typescript.svg`} alt="TypeScript" width="24" height="24" />
     TypeScript
   </span>
   <span class="bg-gray-800 px-4 py-2 rounded-lg flex items-center gap-2">
-    <!-- Python Logo -->
-    <svg width="24" height="24" viewBox="0 0 32 32" fill="none">
-      <rect x="4" y="4" width="24" height="24" rx="6" fill="#3776AB"/>
-      <text x="16" y="21" text-anchor="middle" fill="#FFD43B" font-size="10" font-family="Arial">Py</text>
-    </svg>
+    <img src={`${base}/icons/python.svg`} alt="Python" width="24" height="24" />
     Python
   </span>
   <span class="bg-gray-800 px-4 py-2 rounded-lg flex items-center gap-2">
+    <img src={`${base}/icons/lua.svg`} alt="Lua" width="24" height="24" />
     Lua
+  </span>
+  <span class="bg-gray-800 px-4 py-2 rounded-lg flex items-center gap-2">
+    <img src={`${base}/icons/powershell.svg`} alt="PowerShell" width="24" height="24" />
+    PowerShell
   </span>
 </div>
   <h3 class="text-2xl font-bold mb-10 gap-6">Frameworks</h3>
 <div class="flex flex-wrap justify-center gap-6">
   <span class="bg-gray-800 px-4 py-2 rounded-lg flex items-center gap-2">
-    <!-- ASP.NET Logo (generic .NET logo) -->
-    <svg width="24" height="24" viewBox="0 0 32 32" fill="currentColor">
-      <circle cx="16" cy="16" r="16" fill="#512BD4"/>
-      <text x="16" y="21" text-anchor="middle" fill="#fff" font-size="13" font-family="Arial">.NET</text>
-    </svg>
+    <img src={`${base}/icons/dotnet.svg`} alt="ASP.NET" width="24" height="24" />
     ASP.NET
   </span>
   <span class="bg-gray-800 px-4 py-2 rounded-lg flex items-center gap-2">
-    <!-- WPF Logo (generic Windows logo) -->
-    <svg width="24" height="24" viewBox="0 0 32 32" fill="currentColor">
-      <rect x="2" y="6" width="28" height="20" rx="2" fill="#00ADEF"/>
-      <rect x="2" y="6" width="13" height="9" fill="#fff" opacity="0.2"/>
-      <rect x="17" y="6" width="13" height="9" fill="#fff" opacity="0.2"/>
-      <rect x="2" y="17" width="13" height="9" fill="#fff" opacity="0.2"/>
-      <rect x="17" y="17" width="13" height="9" fill="#fff" opacity="0.2"/>
-    </svg>
     WPF
   </span>
   <span class="bg-gray-800 px-4 py-2 rounded-lg flex items-center gap-2">
-    <!-- React Logo -->
-    <svg width="24" height="24" viewBox="0 0 32 32" fill="none">
-      <circle cx="16" cy="16" r="2.5" fill="#61DAFB"/>
-      <g stroke="#61DAFB" stroke-width="2">
-        <ellipse rx="10" ry="4.5" cx="16" cy="16" transform="rotate(60 16 16)"/>
-        <ellipse rx="10" ry="4.5" cx="16" cy="16" transform="rotate(120 16 16)"/>
-        <ellipse rx="10" ry="4.5" cx="16" cy="16"/>
-      </g>
-    </svg>
+    <img src={`${base}/icons/react.svg`} alt="React" width="24" height="24" />
     React
+  </span>
+  <span class="bg-gray-800 px-4 py-2 rounded-lg flex items-center gap-2">
+    <img src={`${base}/icons/nextjs.svg`} alt="Next.js" width="24" height="24" class="rounded-full" />
+    Next.js
+  </span>
+  <span class="bg-gray-800 px-4 py-2 rounded-lg flex items-center gap-2">
+    <img src={`${base}/icons/fastapi.svg`} alt="FastAPI" width="24" height="24" />
+    FastAPI
   </span>
 </div>
 <h3 class="text-2xl font-bold mb-10 gap-6">Base de données</h3>
@@ -110,7 +74,33 @@
     SQL
   </span>
   <span class="bg-gray-800 px-4 py-2 rounded-lg flex items-center gap-2">
+    <img src={`${base}/icons/mssql.svg`} alt="SQL Server" width="24" height="24" />
+    SQL Server
+  </span>
+  <span class="bg-gray-800 px-4 py-2 rounded-lg flex items-center gap-2">
+    <img src={`${base}/icons/sqlite.svg`} alt="SQLite" width="24" height="24" />
+    SQLite
+  </span>
+  <span class="bg-gray-800 px-4 py-2 rounded-lg flex items-center gap-2">
+    <img src={`${base}/icons/mongodb.svg`} alt="MongoDB" width="24" height="24" />
     MongoDB
+  </span>
+</div>
+<h3 class="text-2xl font-bold mb-10 gap-6">Outils</h3>
+<div class="flex flex-wrap justify-center gap-6">
+  <span class="bg-gray-800 px-4 py-2 rounded-lg flex items-center gap-2">
+    <img src={`${base}/icons/docker.svg`} alt="Docker" width="24" height="24" />
+    Docker
+  </span>
+  <span class="bg-gray-800 px-4 py-2 rounded-lg flex items-center gap-2">
+    <img src={`${base}/icons/git.svg`} alt="Git" width="24" height="24" />
+    Git
+  </span>
+  <span class="bg-gray-800 px-4 py-2 rounded-lg flex items-center gap-2">
+    API REST
+  </span>
+  <span class="bg-gray-800 px-4 py-2 rounded-lg flex items-center gap-2">
+    WebSocket
   </span>
 </div>
 </section>
