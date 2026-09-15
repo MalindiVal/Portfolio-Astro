@@ -1,0 +1,38 @@
+---
+import "../styles/global.css";
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Canva from "../components/Canva.astro";
+import Contact from "../components/Contact.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<Layout title="CV | Valentin Malindi">
+  <Header />
+
+  <section class="py-20">
+    <div class="max-w-3xl mx-auto px-4">
+      <h2 class="text-3xl font-bold tracking-wide text-emerald-400 mb-4 text-center">
+        Mon CV
+      </h2>
+      <p class="text-gray-400 text-center mb-8">
+        Retrouvez mon CV en direct ci-dessous, ou téléchargez-le au format PDF.
+      </p>
+
+      <Canva />
+
+      <div class="flex justify-center mt-8">
+        <a
+          href={`${import.meta.env.BASE_URL}/CV_Valentin_Malindi.pdf`}
+          download
+          class="bg-emerald-500 hover:bg-emerald-400 text-gray-900 font-semibold px-4 py-2 rounded-lg shadow transition"
+        >
+          Télécharger mon CV
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <Contact />
+  <Footer />
+</Layout>
