@@ -1,11 +1,18 @@
 ---
 const cursus = [
   {
-    title: "BUT Informatique — 3ème année",
+    title: "Cycle ingénieur informatique",
+    subtitle: "En recherche d'une alternance de 3 ans : développement web, logiciel ou Back-End, informatique industrielle, Data Engineering ou DevOps",
+    place: "ESEO Dijon",
+    period: "2026 - 2029",
+    current: true,
+    points: [],
+  },
+  {
+    title: "BUT Informatique — diplôme obtenu",
     subtitle: "Parcours Réalisation d'applications : conception, développement, validation",
     place: "IUT de Dijon",
     period: "2025 - 2026",
-    current: true,
     points: [
       "Spécialisation dans la conception et le développement d'applications",
       "Projets en équipe : application WPF / API ASP.NET (AutomateDesign), audit et refonte d'une application PHP (TaskStep)",
@@ -63,7 +70,7 @@ const langues = [
             <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 mb-1">
               <h2 class="text-xl font-semibold text-white">{item.title}</h2>
               <span class="text-xs uppercase tracking-wide text-emerald-400 font-medium">
-                {item.period}{item.current && " · en cours"}
+                {item.period}
               </span>
             </div>
             <p class="text-sm text-gray-500 mb-1">{item.place}</p>
