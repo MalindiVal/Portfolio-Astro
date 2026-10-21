@@ -1,30 +1,30 @@
-<section id="stages" class="bg-gray-900 py-16">
+<section id="stages" class="py-16">
   <div class="max-w-4xl mx-auto px-4">
-    <h2 class="text-3xl font-bold mb-2 text-emerald-400 text-center">Stages</h2>
+    <h1 class="text-3xl md:text-4xl font-bold mb-3 text-emerald-400 text-center">Stages</h1>
     <p class="text-gray-400 text-center mb-12">Mon parcours en entreprise, du plus récent au plus ancien</p>
 
-    <div class="relative border-l-2 border-emerald-500/30 space-y-12 ml-4 md:ml-0">
+    <div class="relative border-l-2 border-emerald-500/30 space-y-12 ml-2 md:ml-0">
       <div class="relative pl-8">
-        <span class="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-emerald-400 ring-4 ring-gray-900"></span>
-        <article class="bg-gray-800 rounded-xl shadow-lg p-6 md:flex md:gap-6">
+        <span class="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-emerald-400 ring-4 ring-gray-950"></span>
+        <article class="bg-gray-900 rounded-xl shadow-lg p-6 md:flex md:gap-6">
           <img
-            src="Essilor_Dijon.jpg"
+            src={`${import.meta.env.BASE_URL}/Essilor_Dijon.jpg`}
             alt="EssilorLuxottica"
             class="w-24 h-24 object-cover rounded-lg shrink-0 mx-auto md:mx-0 mb-4 md:mb-0"
           />
           <div class="flex-1 text-left">
             <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 mb-1">
-              <h4 class="text-xl font-semibold text-white">EssilorLuxottica</h4>
+              <h2 class="text-xl font-semibold text-white">EssilorLuxottica</h2>
               <span class="text-xs uppercase tracking-wide text-emerald-400 font-medium">avr. 2026 - juil. 2026</span>
             </div>
             <p class="text-sm text-gray-500 mb-4">Stagiaire Développeur Full Stack · Dijon</p>
-            <ul class="list-disc list-inside text-gray-400 space-y-2 mb-4">
+            <ul class="list-disc pl-5 text-gray-400 space-y-2 mb-4">
               <li>Conception et développement de PCP LAB, une application web dématérialisant les contrôles qualité et de maintenance des équipements du laboratoire LabRX</li>
               <li>Prise en charge du cycle complet du projet : analyse des besoins, architecture, développement, tests et déploiement</li>
               <li>Développement Full Stack avec Next.js, React, TypeScript, FastAPI et SQL Server, avec une architecture modulaire (API REST, DAO, mappers)</li>
               <li>Intégration d'une synchronisation temps réel via WebSockets, conception d'interfaces d'administration et migration de la base de données</li>
             </ul>
-            <div class="flex flex-wrap gap-2">
+            <div class="flex flex-wrap gap-2 mb-4">
               <span class="bg-emerald-700 text-white px-3 py-1 rounded-full text-xs">Next.js</span>
               <span class="bg-emerald-700 text-white px-3 py-1 rounded-full text-xs">React</span>
               <span class="bg-emerald-700 text-white px-3 py-1 rounded-full text-xs">TypeScript</span>
@@ -36,25 +36,25 @@
               <a href="https://iutdijon.u-bourgogne.fr/mahara/view/view.php?t=14eedc5eca00e4169aa0" class="text-blue-400 hover:text-blue-300 hover:underline transition-colors duration-200" target="_blank" rel="noopener noreferrer">Voir la page mahara dédiée</a>
               <a href="https://www.essilorluxottica.com/fr/" class="text-emerald-400 font-medium hover:underline" target="_blank" rel="noopener noreferrer">Voir l'entreprise →</a>
             </div>
-            </div>
+          </div>
         </article>
       </div>
 
       <div class="relative pl-8">
-        <span class="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-emerald-400 ring-4 ring-gray-900"></span>
-        <article class="bg-gray-800 rounded-xl shadow-lg p-6 md:flex md:gap-6">
+        <span class="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-emerald-400 ring-4 ring-gray-950"></span>
+        <article class="bg-gray-900 rounded-xl shadow-lg p-6 md:flex md:gap-6">
           <img
-            src="lasalle.jpg"
+            src={`${import.meta.env.BASE_URL}/lasalle.jpg`}
             alt="La Salle Passy - Buzenval"
             class="w-24 h-24 object-cover rounded-lg shrink-0 mx-auto md:mx-0 mb-4 md:mb-0"
           />
           <div class="flex-1 text-left">
             <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 mb-1">
-              <h4 class="text-xl font-semibold text-white">La Salle Passy - Buzenval</h4>
+              <h2 class="text-xl font-semibold text-white">La Salle Passy - Buzenval</h2>
               <span class="text-xs uppercase tracking-wide text-emerald-400 font-medium">janv. 2025 - mars 2025</span>
             </div>
             <p class="text-sm text-gray-500 mb-4">Stagiaire Technicien informatique · Rueil-Malmaison</p>
-            <ul class="list-disc list-inside text-gray-400 space-y-2 mb-4">
+            <ul class="list-disc pl-5 text-gray-400 space-y-2 mb-4">
               <li>Déploiement de la suite logicielle Caneco sur plusieurs postes, en lien avec l'éditeur, et mise en place d'une procédure d'installation automatisée</li>
               <li>Préparation et inventaire d'ordinateurs portables avec GLPI, configuration à partir d'images système</li>
               <li>Maintenance et assistance auprès des enseignants et du personnel : installation de logiciels, mises à jour, diagnostic de pannes matérielles et logicielles</li>
@@ -73,20 +73,20 @@
       </div>
 
       <div class="relative pl-8">
-        <span class="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-emerald-400 ring-4 ring-gray-900"></span>
-        <article class="bg-gray-800 rounded-xl shadow-lg p-6 md:flex md:gap-6">
+        <span class="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-emerald-400 ring-4 ring-gray-950"></span>
+        <article class="bg-gray-900 rounded-xl shadow-lg p-6 md:flex md:gap-6">
           <img
-            src="Unyonetnosetablissement.jpg"
+            src={`${import.meta.env.BASE_URL}/Unyonetnosetablissement.jpg`}
             alt="Centre Hospitalier d'Auxerre"
             class="w-24 h-24 object-cover rounded-lg shrink-0 mx-auto md:mx-0 mb-4 md:mb-0"
           />
           <div class="flex-1 text-left">
             <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 mb-1">
-              <h4 class="text-xl font-semibold text-white">Centre Hospitalier d'Auxerre</h4>
+              <h2 class="text-xl font-semibold text-white">Centre Hospitalier d'Auxerre</h2>
               <span class="text-xs uppercase tracking-wide text-emerald-400 font-medium">janv. 2024 - mars 2024</span>
             </div>
             <p class="text-sm text-gray-500 mb-4">Stagiaire Développeur logiciel · Auxerre</p>
-            <ul class="list-disc list-inside text-gray-400 space-y-2 mb-4">
+            <ul class="list-disc pl-5 text-gray-400 space-y-2 mb-4">
               <li>Conception d'une application en Go avec interface graphique pour consulter et mettre à jour des données dans une base MongoDB</li>
               <li>Développement d'une application PowerShell facilitant l'exécution de scripts de maintenance pour les équipes informatiques</li>
               <li>Documentation technique des flux d'échanges entre les applications du système d'information hospitalier</li>

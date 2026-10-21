@@ -1,15 +1,43 @@
+---
+const base = import.meta.env.BASE_URL;
+
+const featured = [
+  {
+    title: "AutomateDesign",
+    image: "automatedesign.png",
+    description:
+      "Outil de création de schémas d’automates en WPF, connecté à une API ASP.NET pour enregistrer et partager ses automates.",
+  },
+  {
+    title: "RapportStage",
+    image: "RapportStage.png",
+    description:
+      "Application web de dépôt et de consultation des rapports de stage pour les étudiants et les enseignants.",
+  },
+];
+---
 <section id="projects" class="py-16 px-6 max-w-6xl mx-auto">
-  <h2 class="text-3xl font-bold mb-10 text-center">Projets récents</h2>
+  <h2 class="text-3xl font-bold mb-10 text-center text-emerald-400">Projets récents</h2>
 
-  <div class="grid md:grid-cols-2 gap-10">
-    <article class="bg-gray-900 p-6 rounded-xl shadow-lg">
-      <img src="/images/automate.png" alt="AutomateDesign" class="rounded-lg mb-4" />
-      <h3 class="text-xl font-semibold mb-2">AutomateDesign</h3>
-      <p class="text-gray-400 mb-4">
-        Création d’un outil de génération de schémas d’automates avec WPF connecté à une API ASP.NET poury enregistrer ses automates.
-      </p>
-      <a href="#" class="text-emerald-400 font-medium">Voir le projet →</a>
-    </article>
+  <div class="grid md:grid-cols-2 gap-8">
+    {featured.map((project) => (
+      <article class="bg-gray-900 rounded-xl shadow-lg overflow-hidden flex flex-col">
+        <img src={`${base}/${project.image}`} alt={project.title} class="w-full h-48 object-cover" />
+        <div class="p-6 flex flex-col flex-1">
+          <h3 class="text-xl font-semibold mb-2">{project.title}</h3>
+          <p class="text-gray-400 mb-4 flex-1">{project.description}</p>
+          <a href={`${base}/projects`} class="text-emerald-400 font-medium hover:underline">Voir le projet →</a>
+        </div>
+      </article>
+    ))}
+  </div>
 
+  <div class="text-center mt-10">
+    <a
+      href={`${base}/projects`}
+      class="inline-block border border-gray-700 text-gray-200 px-6 py-3 rounded-xl font-semibold hover:border-emerald-400 hover:text-emerald-400 transition"
+    >
+      Voir tous mes projets →
+    </a>
   </div>
 </section>

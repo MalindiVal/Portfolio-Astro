@@ -1,13 +1,18 @@
 @import "tailwindcss";
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
-body {
-  font-family: "Inter", sans-serif;
-  scroll-behavior: smooth;
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
 }
-a {
-  text-decoration: none;
-  color: inherit;
+
+/* Dans la couche "base" pour que les classes utilitaires (text-emerald-400…) restent prioritaires */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    /* Évite que le header sticky masque les titres lors d'un saut vers une ancre */
+    scroll-padding-top: 5rem;
+  }
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
 }
