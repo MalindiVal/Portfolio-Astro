@@ -50,11 +50,11 @@ const categories: { title: string; skills: Skill[] }[] = [
 ];
 ---
 <section id="skills" class="py-16 px-6 max-w-6xl mx-auto">
-  <h2 class="text-3xl font-bold mb-10 text-center text-emerald-400">Compétences</h2>
+  <h2 class="text-3xl font-bold mb-10 text-center text-emerald-400" data-reveal>Compétences</h2>
 
   <div class="grid md:grid-cols-2 gap-6">
-    {categories.map((category) => (
-      <div class="bg-gray-900 rounded-xl p-6 shadow-lg">
+    {categories.map((category, i) => (
+      <div class="bg-gray-900 rounded-xl p-6 shadow-lg card-hover" data-reveal style={`--reveal-delay: ${(i % 2) * 120}ms`}>
         <h3 class="text-xl font-semibold mb-5">{category.title}</h3>
         <ul class="flex flex-wrap gap-3">
           {category.skills.map((skill) => (
