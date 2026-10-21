@@ -1,0 +1,49 @@
+---
+const base = import.meta.env.BASE_URL;
+
+const interets = [
+  { emoji: "🎮", label: "Jeux vidéo", detail: "Y jouer et en créer" },
+  { emoji: "🏊", label: "Natation", detail: "8 ans en club" },
+  { emoji: "📚", label: "Mangas", detail: "Lecture" },
+  { emoji: "🎬", label: "Cinéma", detail: "Films d'animation" },
+];
+---
+<section id="about" class="py-16 px-6 max-w-6xl mx-auto">
+  <h2 class="text-3xl font-bold mb-10 text-center text-emerald-400" data-reveal>À propos</h2>
+
+  <div class="grid md:grid-cols-[auto_1fr] gap-10 items-center">
+    <img
+      src={`${base}/profil.jpg`}
+      alt=""
+      width="224"
+      height="224"
+      class="w-40 h-40 md:w-56 md:h-56 rounded-2xl object-cover mx-auto shadow-xl rotate-2 card-hover"
+      data-reveal
+    />
+    <div data-reveal style="--reveal-delay: 120ms">
+      <p class="text-gray-300 text-lg mb-4">
+        J’ai commencé l’informatique grâce à la programmation dans les jeux vidéo, d’abord avec Scratch,
+        puis Python, et enfin C#.
+      </p>
+      <p class="text-gray-400 mb-6">
+        Passionné par la programmation, le développement d’applications et la création de sites internet,
+        je suis aujourd’hui en 3ème année de BUT Informatique à l’IUT de Dijon.
+      </p>
+      <p class="text-gray-400">
+        <span class="text-emerald-400 font-semibold">Engagement associatif :</span>
+        réalisation de fresques avec la mairie d’Auxerre pour la caserne des pompiers, le musée des sciences
+        naturelles et l’aire d’accueil des gens du voyage.
+      </p>
+    </div>
+  </div>
+
+  <ul class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12">
+    {interets.map((interet, i) => (
+      <li class="bg-gray-900 rounded-xl p-5 text-center shadow-lg card-hover" data-reveal style={`--reveal-delay: ${i * 80}ms`}>
+        <span class="text-3xl" aria-hidden="true">{interet.emoji}</span>
+        <p class="font-semibold mt-2">{interet.label}</p>
+        <p class="text-gray-500 text-sm">{interet.detail}</p>
+      </li>
+    ))}
+  </ul>
+</section>
