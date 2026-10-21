@@ -1,0 +1,115 @@
+---
+const cursus = [
+  {
+    title: "BUT Informatique — 3ème année",
+    subtitle: "Parcours Réalisation d'applications : conception, développement, validation",
+    place: "IUT de Dijon",
+    period: "2025 - 2026",
+    current: true,
+    points: [
+      "Spécialisation dans la conception et le développement d'applications",
+      "Projets en équipe : application WPF / API ASP.NET (AutomateDesign), audit et refonte d'une application PHP (TaskStep)",
+      "Stage de fin d'études chez EssilorLuxottica (avr. 2026 - juil. 2026)",
+    ],
+  },
+  {
+    title: "DUT Informatique",
+    subtitle: "Obtenu à l'issue des deux premières années de BUT",
+    place: "IUT de Dijon",
+    period: "2024 - 2025",
+    points: [
+      "Deux années de tronc commun : programmation, bases de données, gestion de projet",
+      "Stages au Centre Hospitalier d'Auxerre et à La Salle Passy - Buzenval",
+    ],
+  },
+  {
+    title: "Baccalauréat général",
+    subtitle: "Spécialités Mathématiques et Physique-Chimie · Mention Assez Bien",
+    place: "St Joseph La Salle, Auxerre",
+    period: "2021 - 2022",
+    points: [],
+  },
+];
+
+const competences = [
+  { name: "Réaliser", description: "Développer des applications informatiques simples à complexes" },
+  { name: "Optimiser", description: "Proposer des applications informatiques optimisées" },
+  { name: "Administrer", description: "Installer et configurer des systèmes et des réseaux" },
+  { name: "Gérer", description: "Concevoir et exploiter des bases de données" },
+  { name: "Conduire", description: "Mener un projet informatique, de l'analyse au déploiement" },
+  { name: "Collaborer", description: "Travailler efficacement au sein d'une équipe informatique" },
+];
+
+const langues = [
+  { name: "Anglais", level: "B2" },
+  { name: "Allemand", level: "A2" },
+];
+---
+<section id="formation" class="py-16">
+  <div class="max-w-4xl mx-auto px-4">
+    <h1 class="text-3xl md:text-4xl font-bold mb-3 text-emerald-400 text-center" data-reveal>Formation</h1>
+    <p class="text-gray-400 text-center mb-12" data-reveal>Mon parcours scolaire et universitaire, du plus récent au plus ancien</p>
+
+    <div class="relative border-l-2 border-emerald-500/30 space-y-12 ml-2 md:ml-0">
+      {cursus.map((item) => (
+        <div class="relative pl-8" data-reveal>
+          <span
+            class:list={[
+              "absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-emerald-400 ring-4 ring-gray-950",
+              item.current && "animate-pulse",
+            ]}
+          ></span>
+          <article class="bg-gray-900 rounded-xl shadow-lg p-6 card-hover">
+            <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 mb-1">
+              <h2 class="text-xl font-semibold text-white">{item.title}</h2>
+              <span class="text-xs uppercase tracking-wide text-emerald-400 font-medium">
+                {item.period}{item.current && " · en cours"}
+              </span>
+            </div>
+            <p class="text-sm text-gray-500 mb-1">{item.place}</p>
+            <p class="text-gray-300 mb-4">{item.subtitle}</p>
+            {item.points.length > 0 && (
+              <ul class="list-disc pl-5 text-gray-400 space-y-2">
+                {item.points.map((point) => <li>{point}</li>)}
+              </ul>
+            )}
+          </article>
+        </div>
+      ))}
+    </div>
+
+    <h2 class="text-2xl font-bold mt-20 mb-3 text-center" data-reveal>Compétences du BUT Informatique</h2>
+    <p class="text-gray-400 text-center mb-10" data-reveal>Les six compétences du référentiel national, développées au fil des projets et des stages</p>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {competences.map((competence, i) => (
+        <div class="bg-gray-900 rounded-xl p-6 shadow-lg card-hover" data-reveal style={`--reveal-delay: ${i * 80}ms`}>
+          <span class="text-emerald-400 text-sm font-semibold">Compétence {i + 1}</span>
+          <h3 class="text-lg font-semibold mt-1 mb-2">{competence.name}</h3>
+          <p class="text-gray-400 text-sm">{competence.description}</p>
+        </div>
+      ))}
+    </div>
+
+    <h2 class="text-2xl font-bold mt-20 mb-8 text-center" data-reveal>Langues</h2>
+    <div class="flex flex-wrap justify-center gap-6" data-reveal>
+      {langues.map((langue) => (
+        <div class="bg-gray-900 rounded-xl px-6 py-4 shadow-lg flex items-center gap-4">
+          <span class="font-semibold">{langue.name}</span>
+          <span class="bg-emerald-700 text-white px-3 py-1 rounded-full text-xs">{langue.level}</span>
+        </div>
+      ))}
+    </div>
+
+    <div class="text-center mt-16" data-reveal>
+      <a
+        href="https://iutdijon.u-bourgogne.fr/mahara/user/view.php?profile=valentinmalindi"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-block bg-emerald-500 text-gray-900 px-6 py-3 rounded-xl font-semibold hover:bg-emerald-400 transition"
+      >
+        Voir mon portfolio Mahara →
+      </a>
+    </div>
+  </div>
+</section>

@@ -1,106 +1,78 @@
 ---
 const base = import.meta.env.BASE_URL;
+
+type Skill = { name: string; icon?: string; rounded?: boolean };
+
+const categories: { title: string; skills: Skill[] }[] = [
+  {
+    title: "Langages",
+    skills: [
+      { name: "C#", icon: "csharp" },
+      { name: "Go", icon: "go" },
+      { name: "PHP", icon: "php" },
+      { name: "HTML", icon: "html5" },
+      { name: "CSS", icon: "css3" },
+      { name: "JavaScript", icon: "javascript" },
+      { name: "TypeScript", icon: "typescript" },
+      { name: "Python", icon: "python" },
+      { name: "Lua", icon: "lua" },
+      { name: "PowerShell", icon: "powershell" },
+    ],
+  },
+  {
+    title: "Frameworks",
+    skills: [
+      { name: "ASP.NET", icon: "dotnet" },
+      { name: "WPF" },
+      { name: "React", icon: "react" },
+      { name: "Next.js", icon: "nextjs", rounded: true },
+      { name: "FastAPI", icon: "fastapi" },
+    ],
+  },
+  {
+    title: "Base de données",
+    skills: [
+      { name: "SQL" },
+      { name: "SQL Server", icon: "mssql" },
+      { name: "SQLite", icon: "sqlite" },
+      { name: "MongoDB", icon: "mongodb" },
+    ],
+  },
+  {
+    title: "Outils",
+    skills: [
+      { name: "Docker", icon: "docker" },
+      { name: "Git", icon: "git" },
+      { name: "API REST" },
+      { name: "WebSocket" },
+    ],
+  },
+];
 ---
-<section class="py-16 px-6 max-w-6xl mx-auto text-center">
-  <h2 class="text-3xl font-bold mb-10">Compétences</h2>
-  <h3 class="text-2xl font-bold mb-10">Langages</h3>
-<div class="flex flex-wrap justify-center gap-6">
-  <span class="bg-gray-800 px-4 py-2 rounded-lg flex items-center gap-2">
-    <img src={`${base}/icons/csharp.svg`} alt="C#" width="24" height="24" />
-    C#
-  </span>
-  <span class="bg-gray-800 px-4 py-2 rounded-lg flex items-center gap-2">
-    <img src={`${base}/icons/go.svg`} alt="Go" width="24" height="24" />
-    Go
-  </span>
-  <span class="bg-gray-800 px-4 py-2 rounded-lg flex items-center gap-2">
-    <img src={`${base}/icons/php.svg`} alt="PHP" width="24" height="24" />
-    PHP
-  </span>
-  <span class="bg-gray-800 px-4 py-2 rounded-lg flex items-center gap-2">
-    <img src={`${base}/icons/html5.svg`} alt="HTML" width="24" height="24" />
-    HTML
-  </span>
-  <span class="bg-gray-800 px-4 py-2 rounded-lg flex items-center gap-2">
-    <img src={`${base}/icons/css3.svg`} alt="CSS" width="24" height="24" />
-    CSS
-  </span>
-  <span class="bg-gray-800 px-4 py-2 rounded-lg flex items-center gap-2">
-    <img src={`${base}/icons/javascript.svg`} alt="JavaScript" width="24" height="24" />
-    JavaScript
-  </span>
-  <span class="bg-gray-800 px-4 py-2 rounded-lg flex items-center gap-2">
-    <img src={`${base}/icons/typescript.svg`} alt="TypeScript" width="24" height="24" />
-    TypeScript
-  </span>
-  <span class="bg-gray-800 px-4 py-2 rounded-lg flex items-center gap-2">
-    <img src={`${base}/icons/python.svg`} alt="Python" width="24" height="24" />
-    Python
-  </span>
-  <span class="bg-gray-800 px-4 py-2 rounded-lg flex items-center gap-2">
-    <img src={`${base}/icons/lua.svg`} alt="Lua" width="24" height="24" />
-    Lua
-  </span>
-  <span class="bg-gray-800 px-4 py-2 rounded-lg flex items-center gap-2">
-    <img src={`${base}/icons/powershell.svg`} alt="PowerShell" width="24" height="24" />
-    PowerShell
-  </span>
-</div>
-  <h3 class="text-2xl font-bold mb-10 gap-6">Frameworks</h3>
-<div class="flex flex-wrap justify-center gap-6">
-  <span class="bg-gray-800 px-4 py-2 rounded-lg flex items-center gap-2">
-    <img src={`${base}/icons/dotnet.svg`} alt="ASP.NET" width="24" height="24" />
-    ASP.NET
-  </span>
-  <span class="bg-gray-800 px-4 py-2 rounded-lg flex items-center gap-2">
-    WPF
-  </span>
-  <span class="bg-gray-800 px-4 py-2 rounded-lg flex items-center gap-2">
-    <img src={`${base}/icons/react.svg`} alt="React" width="24" height="24" />
-    React
-  </span>
-  <span class="bg-gray-800 px-4 py-2 rounded-lg flex items-center gap-2">
-    <img src={`${base}/icons/nextjs.svg`} alt="Next.js" width="24" height="24" class="rounded-full" />
-    Next.js
-  </span>
-  <span class="bg-gray-800 px-4 py-2 rounded-lg flex items-center gap-2">
-    <img src={`${base}/icons/fastapi.svg`} alt="FastAPI" width="24" height="24" />
-    FastAPI
-  </span>
-</div>
-<h3 class="text-2xl font-bold mb-10 gap-6">Base de données</h3>
-<div class="flex flex-wrap justify-center gap-6">
-  <span class="bg-gray-800 px-4 py-2 rounded-lg flex items-center gap-2">
-    SQL
-  </span>
-  <span class="bg-gray-800 px-4 py-2 rounded-lg flex items-center gap-2">
-    <img src={`${base}/icons/mssql.svg`} alt="SQL Server" width="24" height="24" />
-    SQL Server
-  </span>
-  <span class="bg-gray-800 px-4 py-2 rounded-lg flex items-center gap-2">
-    <img src={`${base}/icons/sqlite.svg`} alt="SQLite" width="24" height="24" />
-    SQLite
-  </span>
-  <span class="bg-gray-800 px-4 py-2 rounded-lg flex items-center gap-2">
-    <img src={`${base}/icons/mongodb.svg`} alt="MongoDB" width="24" height="24" />
-    MongoDB
-  </span>
-</div>
-<h3 class="text-2xl font-bold mb-10 gap-6">Outils</h3>
-<div class="flex flex-wrap justify-center gap-6">
-  <span class="bg-gray-800 px-4 py-2 rounded-lg flex items-center gap-2">
-    <img src={`${base}/icons/docker.svg`} alt="Docker" width="24" height="24" />
-    Docker
-  </span>
-  <span class="bg-gray-800 px-4 py-2 rounded-lg flex items-center gap-2">
-    <img src={`${base}/icons/git.svg`} alt="Git" width="24" height="24" />
-    Git
-  </span>
-  <span class="bg-gray-800 px-4 py-2 rounded-lg flex items-center gap-2">
-    API REST
-  </span>
-  <span class="bg-gray-800 px-4 py-2 rounded-lg flex items-center gap-2">
-    WebSocket
-  </span>
-</div>
+<section id="skills" class="py-16 px-6 max-w-6xl mx-auto">
+  <h2 class="text-3xl font-bold mb-10 text-center text-emerald-400" data-reveal>Compétences</h2>
+
+  <div class="grid md:grid-cols-2 gap-6">
+    {categories.map((category, i) => (
+      <div class="bg-gray-900 rounded-xl p-6 shadow-lg card-hover" data-reveal style={`--reveal-delay: ${(i % 2) * 120}ms`}>
+        <h3 class="text-xl font-semibold mb-5">{category.title}</h3>
+        <ul class="flex flex-wrap gap-3">
+          {category.skills.map((skill) => (
+            <li class="bg-gray-800 px-4 py-2 rounded-lg flex items-center gap-2 text-sm">
+              {skill.icon && (
+                <img
+                  src={`${base}/icons/${skill.icon}.svg`}
+                  alt=""
+                  width="20"
+                  height="20"
+                  class:list={[skill.rounded && "rounded-full"]}
+                />
+              )}
+              {skill.name}
+            </li>
+          ))}
+        </ul>
+      </div>
+    ))}
+  </div>
 </section>

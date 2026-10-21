@@ -1,12 +1,26 @@
-<section class="flex flex-col items-center justify-center text-center py-20">
-  <img >
-  <h2 class="text-4xl md:text-6xl font-bold mb-4">
-    Salut, je suis <span class="text-emerald-400">Valentin Malindi</span> 👋
-  </h2>
-  <p class="max-w-2xl text-gray-400 mb-8">
+---
+const base = import.meta.env.BASE_URL;
+---
+<section class="flex flex-col items-center justify-center text-center px-6 py-24 md:py-32 min-h-[70vh]">
+  <img
+    src={`${base}/profil.jpg`}
+    alt="Photo de Valentin Malindi"
+    width="160"
+    height="160"
+    class="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover ring-4 ring-emerald-400/70 ring-offset-4 ring-offset-gray-950 shadow-xl shadow-emerald-500/20 mb-8 animate-fade-up"
+  />
+  <h1 class="text-4xl md:text-6xl font-bold leading-tight mb-6 animate-fade-up" style="--delay: 100ms">
+    Salut, je suis <span class="text-emerald-400">Valentin Malindi</span> <span class="animate-wave">👋</span>
+  </h1>
+  <p class="max-w-2xl text-lg text-gray-400 mb-10 animate-fade-up" style="--delay: 250ms">
     Étudiant en BUT Informatique, passionné par le développement d’applications et la création d’expériences numériques modernes.
   </p>
-  <a href="#projects" class="bg-emerald-500 text-white px-6 py-3 rounded-xl font-semibold hover:bg-emerald-400 transition">
-    Voir mes projets
-  </a>
+  <div class="flex flex-col sm:flex-row gap-4 animate-fade-up" style="--delay: 400ms">
+    <a href="#projects" class="bg-emerald-500 text-gray-900 px-6 py-3 rounded-xl font-semibold hover:bg-emerald-400 transition">
+      Voir mes projets
+    </a>
+    <a href={`${base}/cv`} class="border border-gray-700 text-gray-200 px-6 py-3 rounded-xl font-semibold hover:border-emerald-400 hover:text-emerald-400 transition">
+      Voir mon CV
+    </a>
+  </div>
 </section>

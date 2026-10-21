@@ -1,14 +1,56 @@
 ---
+import "../styles/global.css";
+import Header from "../components/Header.astro";
+import Contact from "../components/Contact.astro";
+import Footer from "../components/Footer.astro";
+
 const { title } = Astro.props;
+const base = import.meta.env.BASE_URL;
 ---
 <html lang="fr">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href={`${base}/favicon.svg`} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    />
     <title>{title}</title>
-    <link rel="stylesheet" href="/src/styles/global.css" />
+    <meta name="description" content="Portfolio de Valentin Malindi, étudiant en BUT Informatique à l’IUT de Dijon." />
+    <meta property="og:title" content={title} />
+    <meta property="og:image" content={new URL(`${base}/profil.jpg`, Astro.site).href} />
+    <script is:inline>document.documentElement.classList.add("js");</script>
   </head>
-  <body class="bg-gray-950 text-gray-100 font-sans">
-    <slot />
+  <body class="min-h-screen flex flex-col bg-gray-950 text-gray-100 font-sans antialiased">
+    <Header />
+    <main class="flex-1">
+      <slot />
+    </main>
+    <Contact />
+    <Footer />
+
+    <script>
+      const elements = document.querySelectorAll("[data-reveal]");
+
+      if ("IntersectionObserver" in window) {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("is-visible");
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.15, rootMargin: "0px 0px -40px 0px" }
+        );
+        elements.forEach((el) => observer.observe(el));
+      } else {
+        elements.forEach((el) => el.classList.add("is-visible"));
+      }
+    </script>
   </body>
 </html>

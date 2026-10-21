@@ -1,13 +1,36 @@
-<section id="proxps" class="bg-gray-900 text-center py-12">
-  <h2 class="text-3xl font-bold mb-10 text-emerald-400">Expériences Professionnelles</h2>
-  <h3 class="text-2xl font-bold mb-6">Stages</h3>
-  <p class="max-w-2xl mx-auto text-gray-400 mb-8">
-    Centre Hospitalier d'Auxerre, La Salle Passy - Buzenval... découvrez le détail de mes stages en BUT Informatique.
-  </p>
-  <a
-    href={`${import.meta.env.BASE_URL}/stages`}
-    class="bg-emerald-500 text-white px-6 py-3 rounded-xl font-semibold hover:bg-emerald-400 transition"
-  >
-    Voir tous mes stages →
-  </a>
+---
+const base = import.meta.env.BASE_URL;
+---
+<section id="proxps" class="bg-gray-900 py-16 px-6">
+  <div class="max-w-5xl mx-auto">
+    <h2 class="text-3xl font-bold mb-10 text-emerald-400 text-center" data-reveal>Mon parcours</h2>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="bg-gray-950 rounded-xl p-8 shadow-lg flex flex-col items-center text-center card-hover" data-reveal>
+        <h3 class="text-2xl font-bold mb-4">Stages</h3>
+        <p class="text-gray-400 mb-8 flex-1">
+          EssilorLuxottica, La Salle Passy - Buzenval, Centre Hospitalier d'Auxerre... découvrez le détail de mes stages en BUT Informatique.
+        </p>
+        <a
+          href={`${base}/stages`}
+          class="inline-block bg-emerald-500 text-gray-900 px-6 py-3 rounded-xl font-semibold hover:bg-emerald-400 transition"
+        >
+          Voir tous mes stages →
+        </a>
+      </div>
+
+      <div class="bg-gray-950 rounded-xl p-8 shadow-lg flex flex-col items-center text-center card-hover" data-reveal style="--reveal-delay: 120ms">
+        <h3 class="text-2xl font-bold mb-4">Formation</h3>
+        <p class="text-gray-400 mb-8 flex-1">
+          3ème année de BUT Informatique à l'IUT de Dijon, parcours Réalisation d'applications, après un DUT Informatique.
+        </p>
+        <a
+          href={`${base}/formation`}
+          class="inline-block bg-emerald-500 text-gray-900 px-6 py-3 rounded-xl font-semibold hover:bg-emerald-400 transition"
+        >
+          Voir ma formation →
+        </a>
+      </div>
+    </div>
+  </div>
 </section>
