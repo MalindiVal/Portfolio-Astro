@@ -1,0 +1,84 @@
+---
+const orientations = [
+  {
+    emoji: "🌐",
+    title: "Développement web Full Stack",
+    description:
+      "Concevoir des applications web modernes et maintenables, en mettant à profit mes compétences front-end et back-end.",
+    skills: ["TypeScript", "React", "Next.js", "Python", "FastAPI", "Bases de données"],
+  },
+  {
+    emoji: "⚙️",
+    title: "Développement Back-End",
+    description:
+      "Mettre à profit mes compétences en développement d’API REST, bases de données SQL et conception d’applications pour contribuer au développement et à l’évolution de solutions logicielles.",
+    skills: ["Python", "C#", "API REST", "SQL"],
+  },
+  {
+    emoji: "🏭",
+    title: "Informatique industrielle et systèmes",
+    description:
+      "Fort de mon expérience en développement d’une application de supervision et de contrôle de machines industrielles, évoluer sur des problématiques mêlant informatique, systèmes et environnement industriel.",
+    skills: ["Python", "C#", "PowerShell", "API", "Bases de données"],
+  },
+  {
+    emoji: "📊",
+    title: "Data Engineering",
+    description:
+      "Développer mes compétences en traitement des données, avec une approche technique issue du développement logiciel, et explorer les applications de l’IA dans les projets informatiques.",
+    skills: ["Python", "SQL", "Traitement des données", "IA"],
+  },
+  {
+    emoji: "🧩",
+    title: "Développement logiciel",
+    description:
+      "Approfondir mes compétences en conception, optimisation et modernisation d’applications, avec un intérêt marqué pour les architectures logicielles.",
+    skills: ["C#", "Architecture logicielle", "Bases de données"],
+  },
+  {
+    emoji: "🚀",
+    title: "DevOps",
+    description:
+      "Développer mes compétences en automatisation, CI/CD, conteneurisation, déploiement et administration des environnements, en m’appuyant sur mon expérience en développement logiciel et API.",
+    skills: ["CI/CD", "Docker", "Automatisation", "Déploiement", "API"],
+  },
+];
+---
+<section id="alternance" class="bg-gray-900 py-16 px-6">
+  <div class="max-w-6xl mx-auto">
+    <h2 class="text-3xl font-bold mb-3 text-center text-emerald-400" data-reveal>Recherche d’alternance</h2>
+    <p class="max-w-3xl mx-auto text-gray-400 text-center mb-12" data-reveal>
+      Titulaire d’un BUT Informatique, parcours Réalisation d’applications, et étudiant en cycle ingénieur
+      informatique à l’ESEO Dijon, je recherche une <span class="text-gray-100 font-semibold">alternance de 3 ans</span>
+      dans l’un de ces domaines :
+    </p>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {orientations.map((orientation, i) => (
+        <article
+          class="bg-gray-950 rounded-xl p-6 shadow-lg flex flex-col card-hover border border-gray-800 hover:border-emerald-500/50"
+          data-reveal
+          style={`--reveal-delay: ${(i % 3) * 120}ms`}
+        >
+          <span class="text-3xl mb-3" aria-hidden="true">{orientation.emoji}</span>
+          <h3 class="text-xl font-semibold mb-3">{orientation.title}</h3>
+          <p class="text-gray-400 mb-5 flex-1">{orientation.description}</p>
+          <ul class="flex flex-wrap gap-2">
+            {orientation.skills.map((skill) => (
+              <li class="bg-emerald-700 text-white px-3 py-1 rounded-full text-xs">{skill}</li>
+            ))}
+          </ul>
+        </article>
+      ))}
+    </div>
+
+    <div class="text-center mt-12" data-reveal>
+      <a
+        href="#contact"
+        class="inline-block bg-emerald-500 text-gray-900 px-6 py-3 rounded-xl font-semibold hover:bg-emerald-400 transition"
+      >
+        Me contacter pour une alternance
+      </a>
+    </div>
+  </div>
+</section>
