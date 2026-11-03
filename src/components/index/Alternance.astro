@@ -43,10 +43,31 @@ const orientations = [
     skills: ["CI/CD", "Docker", "Automatisation", "Déploiement", "API"],
   },
 ];
+
+const conditions = [
+  { emoji: "📅", label: "Début", value: "Avant le 13 décembre 2026" },
+  { emoji: "🔁", label: "Rythme", value: "2 semaines en entreprise / 2 semaines en cours" },
+  { emoji: "📍", label: "Mobilité", value: "Région parisienne, Dijon, Auxerre" },
+];
 ---
 <section id="alternance" class="bg-gray-900 py-16 px-6">
   <div class="max-w-6xl mx-auto">
-    <h2 class="text-3xl font-bold mb-3 text-center text-emerald-400" data-reveal>Recherche d’alternance</h2>
+    <h2 class="text-3xl font-bold mb-8 text-center text-emerald-400" data-reveal>Recherche d’alternance</h2>
+
+    <ul class="grid sm:grid-cols-3 gap-4 max-w-4xl mx-auto mb-10">
+      {conditions.map((condition, i) => (
+        <li
+          class="bg-gray-950 border border-emerald-500/40 rounded-xl px-5 py-4 text-center shadow-lg"
+          data-reveal
+          style={`--reveal-delay: ${i * 120}ms`}
+        >
+          <span class="text-2xl" aria-hidden="true">{condition.emoji}</span>
+          <p class="text-xs uppercase tracking-wide text-emerald-400 font-semibold mt-1">{condition.label}</p>
+          <p class="text-gray-100 font-medium">{condition.value}</p>
+        </li>
+      ))}
+    </ul>
+
     <p class="max-w-3xl mx-auto text-gray-400 text-center mb-12" data-reveal>
       Titulaire d’un BUT Informatique, parcours Réalisation d’applications, et étudiant en cycle ingénieur
       informatique à l’ESEO Dijon, je recherche une <span class="text-gray-100 font-semibold">alternance de 3 ans</span>
