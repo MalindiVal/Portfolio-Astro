@@ -2,10 +2,10 @@
 const base = import.meta.env.BASE_URL;
 
 const interets = [
-  { emoji: "🎮", label: "Jeux vidéo", detail: "Y jouer et en créer" },
+  { emoji: "🎮", label: "Jeux vidéo", detail: "Y jouer et en créer", favoris: ["Mario Kart", "Cyberpunk 2077", "Overwatch"] },
   { emoji: "🏊", label: "Natation", detail: "8 ans en club" },
-  { emoji: "📚", label: "Mangas", detail: "Lecture" },
-  { emoji: "🎬", label: "Cinéma", detail: "Films d'animation" },
+  { emoji: "📚", label: "Mangas", detail: "Lecture", favoris: ["Vagabond", "Radiant"] },
+  { emoji: "🎬", label: "Cinéma", detail: "Films d'animation", favoris: ["Spider-Verse", "Transformers One"] },
 ];
 ---
 <section id="about" class="py-16 px-6 max-w-6xl mx-auto">
@@ -43,6 +43,13 @@ const interets = [
         <span class="text-3xl" aria-hidden="true">{interet.emoji}</span>
         <p class="font-semibold mt-2">{interet.label}</p>
         <p class="text-gray-500 text-sm">{interet.detail}</p>
+        {interet.favoris && (
+          <ul class="flex flex-wrap justify-center gap-1.5 mt-3">
+            {interet.favoris.map((titre) => (
+              <li class="bg-gray-800 text-emerald-400 px-2 py-0.5 rounded-full text-xs">{titre}</li>
+            ))}
+          </ul>
+        )}
       </li>
     ))}
   </ul>
