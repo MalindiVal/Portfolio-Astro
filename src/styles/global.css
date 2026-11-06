@@ -50,19 +50,6 @@
   animation-delay: var(--delay, 0ms);
 }
 
-@keyframes wave {
-  0%, 60%, 100% { transform: rotate(0deg); }
-  10%, 30% { transform: rotate(14deg); }
-  20% { transform: rotate(-8deg); }
-  40% { transform: rotate(-4deg); }
-  50% { transform: rotate(10deg); }
-}
-.animate-wave {
-  display: inline-block;
-  transform-origin: 70% 70%;
-  animation: wave 2.5s ease-in-out 1s infinite;
-}
-
 /* Légère élévation des cartes au survol */
 .card-hover {
   transition:
@@ -83,8 +70,7 @@
     transform: none;
     transition: none;
   }
-  .animate-fade-up,
-  .animate-wave {
+  .animate-fade-up {
     animation: none;
   }
   .card-hover,
