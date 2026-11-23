@@ -1,0 +1,40 @@
+# Reconstruit le site quand un commit arrive sur la branche principale d'un dépôt public :
+# toutes les 15 minutes, compare l'activité publique du compte au dernier déploiement
+# (scripts/depots-modifies.mjs) et lance « Deploy Astro site to Pages » si besoin.
+name: Surveiller les dépôts publics
+
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+  workflow_dispatch:
+
+permissions:
+  actions: write # lancer le workflow de déploiement
+  contents: read
+
+# Une seule vérification à la fois
+concurrency:
+  group: surveillance-depots
+  cancel-in-progress: true
+
+jobs:
+  check:
+    name: Vérifier les nouveaux commits
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          sparse-checkout: scripts
+
+      - name: Chercher des commits depuis le dernier déploiement
+        id: check
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node scripts/depots-modifies.mjs
+
+      - name: Lancer le déploiement
+        if: steps.check.outputs.build == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh workflow run astro.yml --repo "$GITHUB_REPOSITORY" --ref "${{ github.event.repository.default_branch }}"

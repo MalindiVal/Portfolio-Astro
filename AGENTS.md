@@ -40,6 +40,7 @@ src/
 ├── lib/github.ts             # appels à l’API GitHub (dépôts, langages), faits une fois par build
 ├── lib/projects.ts           # tri et ajout des projets d’après l’API GitHub
 ├── lib/skills.ts             # langages de la section Compétences d’après les dépôts
+scripts/depots-modifies.mjs   # y a-t-il des commits à déployer ? (workflow surveillance-depots.yml)
 public/                       # images, icônes (public/icons/*.svg), CV PDF, photo de profil
 ```
 
@@ -82,7 +83,7 @@ public/                       # images, icônes (public/icons/*.svg), CV PDF, ph
 - Les projets sont décrits dans `src/data/projects.ts`, chacun avec la liste de ses dépôts (`repos`). `src/lib/projects.ts` lit l'activité de ces dépôts sur l'API GitHub au moment du build.
 - **Tri automatique** : du dernier push le plus récent au plus ancien. Un projet poussé depuis moins de `RECENT_DAYS` jours (90) a le badge « Récent ». L'accueil montre les `FEATURED_COUNT` projets les plus récents (texte `summary`, sinon `description`). `highlight: false` exclut un projet du badge et de l'accueil, par exemple ce portfolio qui est poussé en continu.
 - **Ajout automatique** : un dépôt public de MalindiVal qui porte le topic GitHub `portfolio` et qu'aucun `repos` ne cite déjà est ajouté avec son nom, sa description, sa langue (badge + icône de `public/icons/`) et ses topics. Pour lui donner un vrai titre, une image ou d'autres liens, le décrire dans `src/data/projects.ts`.
-- **Mise à jour** : le site est reconstruit chaque jour à 5 h UTC (`schedule` dans `astro.yml`), à chaque push sur `main` et à la main depuis l'onglet Actions. Pour une reconstruction immédiate depuis un autre dépôt, envoyer un événement `repository_dispatch` de type `projet-mis-a-jour` avec un jeton qui a le droit `contents: write` sur Portfolio-Astro :
+- **Mise à jour** : le site est reconstruit dans les 15 minutes qui suivent un commit sur la branche principale de n'importe quel dépôt public (workflow `surveillance-depots.yml`, qui lance `scripts/depots-modifies.mjs` puis le déploiement si besoin ; `node scripts/depots-modifies.mjs` le teste en local). Il l'est aussi chaque jour à 5 h UTC pour mettre à jour le badge « Récent » (`schedule` dans `astro.yml`), à chaque push sur `main` et à la main depuis l'onglet Actions. Pour une reconstruction immédiate depuis un autre dépôt, envoyer un événement `repository_dispatch` de type `projet-mis-a-jour` avec un jeton qui a le droit `contents: write` sur Portfolio-Astro :
   ```bash
   gh api repos/MalindiVal/Portfolio-Astro/dispatches -f event_type=projet-mis-a-jour
   ```
