@@ -1,110 +1,132 @@
+---
+const base = import.meta.env.BASE_URL;
+
+type Project = {
+  title: string;
+  description: string;
+  tags: string[];
+  links: { label: string; href: string }[];
+  // Image dans public/ ; sans image, la carte affiche les icônes de `icons` (public/icons/*.svg)
+  image?: { src: string; width: number; height: number };
+  icons?: string[];
+};
+
+const projects: Project[] = [
+  {
+    title: "AutomateDesign",
+    image: { src: "automatedesign.webp", width: 1200, height: 726 },
+    description:
+      "Une application de bureau WPF pour réaliser des schémas d'automates, connectée à une API qui regroupe les automates des utilisateurs. Réalisée dans le cadre d'un projet universitaire.",
+    tags: ["C#", "WPF", "XAML", "API REST", "SQLite", "Docker", "MVVM"],
+    links: [
+      { label: "Page mahara", href: "https://iutdijon.u-bourgogne.fr/mahara/view/view.php?homepage=equipe-sae-s5-01&page=sae-5-automatedesign" },
+      { label: "Client React", href: "https://github.com/MalindiVal/AutomateDesign-ReactClient" },
+      { label: "Client WPF", href: "https://github.com/MalindiVal/AutomateDesign-Client" },
+      { label: "API", href: "https://github.com/MalindiVal/AutomateDesign-API" },
+    ],
+  },
+  {
+    title: "Gestionnaire de Droits en Go",
+    image: { src: "Unyonetnosetablissement.jpg", width: 259, height: 194 },
+    description:
+      "Application console en Go qui gère les droits des utilisateurs à partir d'un fichier XML, en environnement hospitalier.",
+    tags: ["Go", "XML"],
+    links: [{ label: "Voir le projet sur Github", href: "https://github.com/MalindiVal/GUI-Golang-Gestion-Droits" }],
+  },
+  {
+    title: "TaskStep",
+    image: { src: "taskstep.webp", width: 1200, height: 456 },
+    description:
+      "Application web de gestion de tâches : version améliorée d'une application précédente, avec une interface modernisée et un code corrigé. Réalisée dans le cadre d'un projet universitaire.",
+    tags: ["PHP", "XAMPP", "Audit", "Optimisation"],
+    links: [
+      { label: "Page mahara", href: "https://iutdijon.u-bourgogne.fr/mahara/view/view.php?profile=valentinmalindi&page=sae-4-01-developpement-d-une-application-complexe" },
+      { label: "Voir le projet sur Github", href: "https://github.com/MalindiVal/S4_B1_TechnoLab_Taskstep" },
+    ],
+  },
+  {
+    title: "SRB2 Kart Turbo Mod",
+    image: { src: "srb2k.webp", width: 1200, height: 750 },
+    description: "Un mod pour le jeu SRB2 Kart, qui ajoute de nouvelles fonctionnalités et améliore le gameplay.",
+    tags: ["Lua"],
+    links: [{ label: "Voir le projet sur Github", href: "https://github.com/MalindiVal/SRB2Kart-Turbo-Mode" }],
+  },
+  {
+    title: "RapportStage",
+    image: { src: "RapportStage.webp", width: 1200, height: 512 },
+    description:
+      "Une application web de dépôt et de consultation des rapports de stage, pour les étudiants et les enseignants. Réalisée dans le cadre d'un projet universitaire.",
+    tags: ["ASP.NET", "C#", "HTML/CSS/JS", "Docker"],
+    links: [
+      { label: "Page mahara", href: "https://iutdijon.u-bourgogne.fr/mahara/view/view.php?profile=valentinmalindi&page=sae-3-01-developpement-d-une-application" },
+      { label: "API sur Github", href: "https://github.com/MalindiVal/RapportIUT-API" },
+      { label: "Client sur Github", href: "https://github.com/MalindiVal/RapportIUT-Client" },
+    ],
+  },
+  {
+    title: "Go-Quick-Actu",
+    icons: ["go.svg", "docker.svg"],
+    description:
+      "API REST en Go qui agrège l'actualité de 10 médias français par flux RSS, analyse chaque article avec l'IA (mots-clés et sujet) et produit des synthèses multi-sources : les faits communs, puis l'angle choisi par chaque média.",
+    tags: ["Go", "Gin", "PostgreSQL", "RSS", "API Claude", "Docker", "GitHub Actions"],
+    links: [{ label: "Voir le projet sur Github", href: "https://github.com/MalindiVal/Go-Quick-Actu" }],
+  },
+  {
+    title: "JobRadar",
+    icons: ["python.svg", "fastapi.svg", "nextjs.svg"],
+    description:
+      "Application de veille d'offres d'alternance : collecte automatisée avec n8n, analyse et score de chaque offre par Claude (avec un repli sur un score par règles), notifications par e-mail et tableau de bord web.",
+    tags: ["Python", "FastAPI", "PostgreSQL", "n8n", "API Claude", "Next.js", "Docker"],
+    links: [
+      { label: "API sur Github", href: "https://github.com/MalindiVal/jobradar-backend" },
+      { label: "Client sur Github", href: "https://github.com/MalindiVal/jobradar-frontend" },
+    ],
+  },
+];
+
+// Nombre impair de projets : la dernière carte est centrée sur la ligne
+const centerLast = projects.length % 2 === 1;
+---
 <section id="projects" class="py-16">
   <div class="max-w-6xl mx-auto px-4">
     <h1 class="text-3xl md:text-4xl font-bold mb-3 text-emerald-400 text-center" data-reveal>Projets</h1>
     <p class="text-gray-400 text-center mb-12" data-reveal>Une sélection de projets réalisés en formation et en autonomie</p>
 
     <div class="grid md:grid-cols-2 gap-8">
-      <article class="bg-gray-900 rounded-xl shadow-lg overflow-hidden flex flex-col card-hover" data-reveal>
-        <img src={`${import.meta.env.BASE_URL}/automatedesign.webp`} width="1200" height="726" alt="AutomateDesign" class="w-full h-48 object-cover" loading="lazy" decoding="async" />
-        <div class="p-6 flex flex-col flex-1">
-          <h2 class="text-xl font-semibold mb-2 text-white">AutomateDesign</h2>
-          <p class="text-gray-400 mb-4 flex-1">
-            Une application de bureau WPF pour réaliser des schémas d'automates, connectée à une API qui regroupe les automates des utilisateurs.
-            Réalisée dans le cadre d'un projet universitaire.
-          </p>
-          <div class="flex flex-wrap gap-2 mb-4">
-            <span class="bg-emerald-700 text-white px-3 py-1 rounded-full text-xs">C#</span>
-            <span class="bg-emerald-700 text-white px-3 py-1 rounded-full text-xs">WPF</span>
-            <span class="bg-emerald-700 text-white px-3 py-1 rounded-full text-xs">XAML</span>
-            <span class="bg-emerald-700 text-white px-3 py-1 rounded-full text-xs">API REST</span>
-            <span class="bg-emerald-700 text-white px-3 py-1 rounded-full text-xs">SQLite</span>
-            <span class="bg-emerald-700 text-white px-3 py-1 rounded-full text-xs">Docker</span>
-            <span class="bg-emerald-700 text-white px-3 py-1 rounded-full text-xs">MVVM</span>
+      {projects.map((project, i) => (
+        <article
+          class:list={[
+            "bg-gray-900 rounded-xl shadow-lg overflow-hidden flex flex-col card-hover",
+            centerLast && i === projects.length - 1 && "md:col-span-2 md:max-w-[calc(50%-1rem)] md:w-full md:mx-auto",
+          ]}
+          data-reveal
+          style={`--reveal-delay: ${(i % 2) * 120}ms`}
+        >
+          {project.image ? (
+            <img src={`${base}/${project.image.src}`} width={project.image.width} height={project.image.height} alt={project.title} class="w-full h-48 object-cover" loading="lazy" decoding="async" />
+          ) : (
+            <div class="w-full h-48 flex items-center justify-center gap-6 bg-linear-to-br from-gray-800 to-emerald-950" aria-hidden="true">
+              {project.icons?.map((icon) => (
+                <img src={`${base}/icons/${icon}`} alt="" width="56" height="56" class="w-14 h-14" loading="lazy" decoding="async" />
+              ))}
+            </div>
+          )}
+          <div class="p-6 flex flex-col flex-1">
+            <h2 class="text-xl font-semibold mb-2 text-white">{project.title}</h2>
+            <p class="text-gray-400 mb-4 flex-1">{project.description}</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              {project.tags.map((tag) => (
+                <span class="bg-emerald-700 text-white px-3 py-1 rounded-full text-xs">{tag}</span>
+              ))}
+            </div>
+            <div class="flex flex-wrap gap-4 text-sm">
+              {project.links.map((link) => (
+                <a href={link.href} class="text-emerald-400 hover:text-emerald-300 hover:underline transition-colors duration-200" target="_blank" rel="noopener noreferrer">{link.label}</a>
+              ))}
+            </div>
           </div>
-          <div class="flex flex-wrap gap-4 text-sm">
-            <a href="https://iutdijon.u-bourgogne.fr/mahara/view/view.php?homepage=equipe-sae-s5-01&page=sae-5-automatedesign" class="text-emerald-400 hover:text-emerald-300 hover:underline transition-colors duration-200" target="_blank" rel="noopener noreferrer">Page mahara</a>
-            <a href="https://github.com/MalindiVal/AutomateDesign-ReactClient" class="text-emerald-400 hover:text-emerald-300 hover:underline transition-colors duration-200" target="_blank" rel="noopener noreferrer">Client React</a>
-            <a href="https://github.com/MalindiVal/AutomateDesign-Client" class="text-emerald-400 hover:text-emerald-300 hover:underline transition-colors duration-200" target="_blank" rel="noopener noreferrer">Client WPF</a>
-            <a href="https://github.com/MalindiVal/AutomateDesign-API" class="text-emerald-400 hover:text-emerald-300 hover:underline transition-colors duration-200" target="_blank" rel="noopener noreferrer">API</a>
-          </div>
-        </div>
-      </article>
-
-      <article class="bg-gray-900 rounded-xl shadow-lg overflow-hidden flex flex-col card-hover" data-reveal>
-        <img src={`${import.meta.env.BASE_URL}/Unyonetnosetablissement.jpg`} width="259" height="194" alt="Gestionnaire de Droits en Go" class="w-full h-48 object-cover" loading="lazy" decoding="async" />
-        <div class="p-6 flex flex-col flex-1">
-          <h2 class="text-xl font-semibold mb-2 text-white">Gestionnaire de Droits en Go</h2>
-          <p class="text-gray-400 mb-4 flex-1">
-            Application console en Go qui gère les droits des utilisateurs à partir d'un fichier XML, en environnement hospitalier.
-          </p>
-          <div class="flex flex-wrap gap-2 mb-4">
-            <span class="bg-emerald-700 text-white px-3 py-1 rounded-full text-xs">Go</span>
-            <span class="bg-emerald-700 text-white px-3 py-1 rounded-full text-xs">XML</span>
-          </div>
-          <div class="flex flex-wrap gap-4 text-sm">
-            <a href="https://github.com/MalindiVal/GUI-Golang-Gestion-Droits" class="text-emerald-400 hover:text-emerald-300 hover:underline transition-colors duration-200" target="_blank" rel="noopener noreferrer">Voir le projet sur Github</a>
-          </div>
-        </div>
-      </article>
-
-      <article class="bg-gray-900 rounded-xl shadow-lg overflow-hidden flex flex-col card-hover" data-reveal>
-        <img src={`${import.meta.env.BASE_URL}/taskstep.webp`} width="1200" height="456" alt="TaskStep" class="w-full h-48 object-cover" loading="lazy" decoding="async" />
-        <div class="p-6 flex flex-col flex-1">
-          <h2 class="text-xl font-semibold mb-2 text-white">TaskStep</h2>
-          <p class="text-gray-400 mb-4 flex-1">
-            Application web de gestion de tâches : version améliorée d'une application précédente, avec une interface modernisée et un code corrigé.
-            Réalisée dans le cadre d'un projet universitaire.
-          </p>
-          <div class="flex flex-wrap gap-2 mb-4">
-            <span class="bg-emerald-700 text-white px-3 py-1 rounded-full text-xs">PHP</span>
-            <span class="bg-emerald-700 text-white px-3 py-1 rounded-full text-xs">XAMPP</span>
-            <span class="bg-emerald-700 text-white px-3 py-1 rounded-full text-xs">Audit</span>
-            <span class="bg-emerald-700 text-white px-3 py-1 rounded-full text-xs">Optimisation</span>
-          </div>
-          <div class="flex flex-wrap gap-4 text-sm">
-            <a href="https://iutdijon.u-bourgogne.fr/mahara/view/view.php?profile=valentinmalindi&page=sae-4-01-developpement-d-une-application-complexe" class="text-emerald-400 hover:text-emerald-300 hover:underline transition-colors duration-200" target="_blank" rel="noopener noreferrer">Page mahara</a>
-            <a href="https://github.com/MalindiVal/S4_B1_TechnoLab_Taskstep" class="text-emerald-400 hover:text-emerald-300 hover:underline transition-colors duration-200" target="_blank" rel="noopener noreferrer">Voir le projet sur Github</a>
-          </div>
-        </div>
-      </article>
-
-      <article class="bg-gray-900 rounded-xl shadow-lg overflow-hidden flex flex-col card-hover" data-reveal>
-        <img src={`${import.meta.env.BASE_URL}/srb2k.webp`} width="1200" height="750" alt="SRB2 Kart Turbo Mod" class="w-full h-48 object-cover" loading="lazy" decoding="async" />
-        <div class="p-6 flex flex-col flex-1">
-          <h2 class="text-xl font-semibold mb-2 text-white">SRB2 Kart Turbo Mod</h2>
-          <p class="text-gray-400 mb-4 flex-1">
-            Un mod pour le jeu SRB2 Kart, qui ajoute de nouvelles fonctionnalités et améliore le gameplay.
-          </p>
-          <div class="flex flex-wrap gap-2 mb-4">
-            <span class="bg-emerald-700 text-white px-3 py-1 rounded-full text-xs">Lua</span>
-          </div>
-          <div class="flex flex-wrap gap-4 text-sm">
-            <a href="https://github.com/MalindiVal/SRB2Kart-Turbo-Mode" class="text-emerald-400 hover:text-emerald-300 hover:underline transition-colors duration-200" target="_blank" rel="noopener noreferrer">Voir le projet sur Github</a>
-          </div>
-        </div>
-      </article>
-
-      <article class="bg-gray-900 rounded-xl shadow-lg overflow-hidden flex flex-col card-hover md:col-span-2 md:max-w-[calc(50%-1rem)] md:w-full md:mx-auto" data-reveal>
-        <img src={`${import.meta.env.BASE_URL}/RapportStage.webp`} width="1200" height="512" alt="RapportStage" class="w-full h-48 object-cover" loading="lazy" decoding="async" />
-        <div class="p-6 flex flex-col flex-1">
-          <h2 class="text-xl font-semibold mb-2 text-white">RapportStage</h2>
-          <p class="text-gray-400 mb-4 flex-1">
-            Une application web de dépôt et de consultation des rapports de stage, pour les étudiants et les enseignants.
-            Réalisée dans le cadre d'un projet universitaire.
-          </p>
-          <div class="flex flex-wrap gap-2 mb-4">
-            <span class="bg-emerald-700 text-white px-3 py-1 rounded-full text-xs">ASP.NET</span>
-            <span class="bg-emerald-700 text-white px-3 py-1 rounded-full text-xs">C#</span>
-            <span class="bg-emerald-700 text-white px-3 py-1 rounded-full text-xs">HTML/CSS/JS</span>
-            <span class="bg-emerald-700 text-white px-3 py-1 rounded-full text-xs">Docker</span>
-          </div>
-          <div class="flex flex-wrap gap-4 text-sm">
-            <a href="https://iutdijon.u-bourgogne.fr/mahara/view/view.php?profile=valentinmalindi&page=sae-3-01-developpement-d-une-application" class="text-emerald-400 hover:text-emerald-300 hover:underline transition-colors duration-200" target="_blank" rel="noopener noreferrer">Page mahara</a>
-            <a href="https://github.com/MalindiVal/RapportIUT-API" class="text-emerald-400 hover:text-emerald-300 hover:underline transition-colors duration-200" target="_blank" rel="noopener noreferrer">API sur Github</a>
-            <a href="https://github.com/MalindiVal/RapportIUT-Client" class="text-emerald-400 hover:text-emerald-300 hover:underline transition-colors duration-200" target="_blank" rel="noopener noreferrer">Client sur Github</a>
-          </div>
-        </div>
-      </article>
+        </article>
+      ))}
     </div>
   </div>
 </section>
