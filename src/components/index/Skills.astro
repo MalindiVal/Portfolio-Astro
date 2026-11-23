@@ -1,23 +1,27 @@
 ---
+import { getLanguages, type LanguageSkill, type Skill } from "../../lib/skills";
+
 const base = import.meta.env.BASE_URL;
 
-type Skill = { name: string; icon?: string; rounded?: boolean };
+// Langages : complétés et triés au build d'après les dépôts GitHub (voir src/lib/skills.ts).
+// Un langage de cette liste sans dépôt public reste affiché, en fin de liste.
+const languages = await getLanguages([
+  { name: "C#", icon: "csharp" },
+  { name: "Go", icon: "go" },
+  { name: "PHP", icon: "php" },
+  { name: "HTML", icon: "html5" },
+  { name: "CSS", icon: "css3" },
+  { name: "JavaScript", icon: "javascript" },
+  { name: "TypeScript", icon: "typescript" },
+  { name: "Python", icon: "python" },
+  { name: "Lua", icon: "lua" },
+  { name: "PowerShell", icon: "powershell" },
+]);
 
-const categories: { title: string; skills: Skill[] }[] = [
+const categories: { title: string; skills: (Skill & Partial<LanguageSkill>)[] }[] = [
   {
     title: "Langages",
-    skills: [
-      { name: "C#", icon: "csharp" },
-      { name: "Go", icon: "go" },
-      { name: "PHP", icon: "php" },
-      { name: "HTML", icon: "html5" },
-      { name: "CSS", icon: "css3" },
-      { name: "JavaScript", icon: "javascript" },
-      { name: "TypeScript", icon: "typescript" },
-      { name: "Python", icon: "python" },
-      { name: "Lua", icon: "lua" },
-      { name: "PowerShell", icon: "powershell" },
-    ],
+    skills: languages,
   },
   {
     title: "Frameworks",
@@ -27,6 +31,9 @@ const categories: { title: string; skills: Skill[] }[] = [
       { name: "React", icon: "react" },
       { name: "Next.js", icon: "nextjs", rounded: true },
       { name: "FastAPI", icon: "fastapi" },
+      { name: "Angular" },
+      { name: "Astro" },
+      { name: "Tailwind CSS" },
     ],
   },
   {
@@ -36,6 +43,8 @@ const categories: { title: string; skills: Skill[] }[] = [
       { name: "SQL Server", icon: "mssql" },
       { name: "SQLite", icon: "sqlite" },
       { name: "MongoDB", icon: "mongodb" },
+      { name: "PostgreSQL" },
+      { name: "MySQL" },
     ],
   },
   {
@@ -45,6 +54,7 @@ const categories: { title: string; skills: Skill[] }[] = [
       { name: "Git", icon: "git" },
       { name: "API REST" },
       { name: "WebSocket" },
+      { name: "GitHub Actions" },
     ],
   },
 ];
@@ -69,6 +79,11 @@ const categories: { title: string; skills: Skill[] }[] = [
                 />
               )}
               {skill.name}
+              {skill.repos ? (
+                <span class="text-xs text-gray-500" title={`Utilisé dans ${skill.repos} dépôt${skill.repos > 1 ? "s" : ""} GitHub`}>
+                  · {skill.repos} dépôt{skill.repos > 1 && "s"}
+                </span>
+              ) : null}
             </li>
           ))}
         </ul>

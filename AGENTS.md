@@ -37,7 +37,9 @@ src/
 │   ├── ProjectVisual.astro  # image ou icônes en tête d’une carte de projet
 │   ├── projects/, stages/, formation/
 ├── data/projects.ts          # données des projets (voir « Projets »)
+├── lib/github.ts             # appels à l’API GitHub (dépôts, langages), faits une fois par build
 ├── lib/projects.ts           # tri et ajout des projets d’après l’API GitHub
+├── lib/skills.ts             # langages de la section Compétences d’après les dépôts
 public/                       # images, icônes (public/icons/*.svg), CV PDF, photo de profil
 ```
 
@@ -85,6 +87,13 @@ public/                       # images, icônes (public/icons/*.svg), CV PDF, ph
   gh api repos/MalindiVal/Portfolio-Astro/dispatches -f event_type=projet-mis-a-jour
   ```
 - Si GitHub est injoignable (hors ligne, limite de 60 requêtes/h sans jeton), le build passe quand même : les projets de `src/data/projects.ts` sont affichés dans l'ordre du fichier, sans date. En CI, `GITHUB_TOKEN` relève cette limite. En `npm run dev`, les données sont lues une seule fois : relancer le serveur pour les rafraîchir.
+
+### Compétences
+- Dans `src/components/index/Skills.astro`, la catégorie « Langages » est complétée et triée au build par `src/lib/skills.ts`, d'après les langages des dépôts publics (API GitHub, appels partagés dans `src/lib/github.ts`).
+- Un langage compte pour un dépôt s'il y fait au moins 5 % du code. Tri par nombre de dépôts, puis par quantité de code ; chaque langage affiche « · N dépôts ». Les langages de configuration (Dockerfile, Shell…) et Astro, rangé dans « Frameworks », sont ignorés (liste `IGNORED`).
+- Les langages saisis à la main sans dépôt public (ex. PowerShell) restent en fin de liste ; un langage détecté sans icône s'affiche sans icône (ajouter le SVG dans `public/icons/` et l'entrée dans `LANGUAGE_ICONS`).
+- Sans accès à GitHub, la liste saisie à la main est affichée telle quelle. Les autres catégories (frameworks, bases de données, outils) restent saisies à la main.
+- Un build fait une requête par dépôt pour les langages : sans `GITHUB_TOKEN`, la limite de 60 requêtes/h n'autorise que 2 ou 3 builds locaux par heure, après quoi le repli s'applique.
 
 ### Contenu
 - Les listes répétitives (compétences, orientations, cursus…) sont décrites dans un tableau dans le frontmatter et rendues avec `.map()`.

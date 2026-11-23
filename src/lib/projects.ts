@@ -6,9 +6,10 @@
 // - Si GitHub est injoignable (hors ligne, limite d'API atteinte…), le build ne casse pas :
 //   les projets décrits à la main sont affichés dans l'ordre du fichier, sans date.
 //
-// GITHUB_TOKEN (facultatif, fourni par GitHub Actions) relève la limite de l'API de 60 à 1 000 requêtes/h.
+// Les appels à GitHub sont dans src/lib/github.ts.
 
-import { FEATURED_COUNT, GITHUB_USER, PORTFOLIO_TOPIC, RECENT_DAYS, projects as curated, type ProjectData } from "../data/projects";
+import { FEATURED_COUNT, PORTFOLIO_TOPIC, RECENT_DAYS, projects as curated, type ProjectData } from "../data/projects";
+import { LANGUAGE_ICONS, getOwnedRepos, githubGet, type GitHubRepo } from "./github";
 
 export type Project = ProjectData & {
   /** Date du dernier push sur l'un des dépôts du projet (null si inconnue). */
@@ -16,47 +17,8 @@ export type Project = ProjectData & {
   recent: boolean;
 };
 
-type GitHubRepo = {
-  full_name: string;
-  name: string;
-  html_url: string;
-  description: string | null;
-  language: string | null;
-  topics?: string[];
-  pushed_at: string;
-  fork: boolean;
-  archived: boolean;
-};
-
-/** Langage GitHub → icône de public/icons/ pour les projets ajoutés automatiquement. */
-const LANGUAGE_ICONS: Record<string, string> = {
-  Go: "go.svg",
-  Python: "python.svg",
-  "C#": "csharp.svg",
-  TypeScript: "typescript.svg",
-  JavaScript: "javascript.svg",
-  PHP: "php.svg",
-  Lua: "lua.svg",
-  HTML: "html5.svg",
-  CSS: "css3.svg",
-  PowerShell: "powershell.svg",
-};
-
-async function githubGet<T>(path: string): Promise<T> {
-  const headers: Record<string, string> = {
-    Accept: "application/vnd.github+json",
-    "X-GitHub-Api-Version": "2022-11-28",
-  };
-  const token = process.env.GITHUB_TOKEN;
-  if (token) headers.Authorization = `Bearer ${token}`;
-
-  const res = await fetch(`https://api.github.com${path}`, { headers, signal: AbortSignal.timeout(10_000) });
-  if (!res.ok) throw new Error(`GitHub ${res.status} sur ${path}`);
-  return res.json() as Promise<T>;
-}
-
 async function fetchRepos(): Promise<Map<string, GitHubRepo>> {
-  const owned = await githubGet<GitHubRepo[]>(`/users/${GITHUB_USER}/repos?type=owner&per_page=100&sort=pushed`);
+  const owned = await getOwnedRepos();
   const repos = new Map(owned.map((r) => [r.full_name.toLowerCase(), r]));
 
   // Dépôts cités dans les données mais hors du compte (organisation, autre propriétaire)
