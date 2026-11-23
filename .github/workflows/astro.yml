@@ -12,6 +12,15 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
+  # Reconstruit le site chaque jour pour mettre à jour la liste des projets
+  # (tri par dernier commit, badge « Récent », nouveaux dépôts avec le topic `portfolio`)
+  schedule:
+    - cron: "0 5 * * *"
+
+  # Reconstruction immédiate depuis un autre dépôt (voir AGENTS.md, « Projets »)
+  repository_dispatch:
+    types: [projet-mis-a-jour]
+
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
   contents: read
@@ -67,6 +76,9 @@ jobs:
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
         working-directory: ${{ env.BUILD_PATH }}
       - name: Build with Astro
+        env:
+          # Lecture de l'activité des dépôts publics (limite d'API plus haute qu'en anonyme)
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           ${{ steps.detect-package-manager.outputs.runner }} astro build \
             --site "${{ steps.pages.outputs.origin }}" \

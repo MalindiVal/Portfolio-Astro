@@ -1,96 +1,9 @@
 ---
-const base = import.meta.env.BASE_URL;
+// Les projets sont décrits dans src/data/projects.ts et triés par activité GitHub (src/lib/projects.ts).
+import ProjectVisual from "../ProjectVisual.astro";
+import { formatMonth, getProjects } from "../../lib/projects";
 
-type Project = {
-  title: string;
-  description: string;
-  tags: string[];
-  links: { label: string; href: string }[];
-  // Image dans public/ ; sans image, la carte affiche les icônes de `icons` (public/icons/*.svg)
-  image?: { src: string; width: number; height: number };
-  icons?: string[];
-};
-
-const projects: Project[] = [
-  {
-    title: "AutomateDesign",
-    image: { src: "automatedesign.webp", width: 1200, height: 726 },
-    description:
-      "Une application de bureau WPF qui permet de réaliser des schémas d'automates. Ce logiciel est connecté à une API qui regroupe les automates créés par les différents utilisateurs connectés. Réalisé dans le cadre d'un projet universitaire.",
-    tags: ["C#", "WPF", "XAML", "API REST", "SQLite", "Docker", "MVVM"],
-    links: [
-      { label: "Page mahara", href: "https://iutdijon.u-bourgogne.fr/mahara/view/view.php?homepage=equipe-sae-s5-01&page=sae-5-automatedesign" },
-      { label: "Client React", href: "https://github.com/MalindiVal/AutomateDesign-ReactClient" },
-      { label: "Client WPF", href: "https://github.com/MalindiVal/AutomateDesign-Client" },
-      { label: "API", href: "https://github.com/MalindiVal/AutomateDesign-API" },
-    ],
-  },
-  {
-    title: "Gestionnaire de Droits en Go",
-    image: { src: "Unyonetnosetablissement.jpg", width: 259, height: 194 },
-    description:
-      "Application console en Go permettant de gérer les droits des utilisateurs à partir d'un fichier XML. Permet de faciliter la gestion des droits dans un environnement hospitalier.",
-    tags: ["Go", "XML"],
-    links: [{ label: "Voir le projet sur Github", href: "https://github.com/MalindiVal/GUI-Golang-Gestion-Droits" }],
-  },
-  {
-    title: "TaskStep",
-    image: { src: "taskstep.webp", width: 1200, height: 456 },
-    description:
-      "Application web permettant de gérer des tâches. Ceci est une version améliorée d'une application précédente, avec une interface plus moderne et des corrections en termes de code. Réalisé dans le cadre d'un projet universitaire.",
-    tags: ["PHP", "XAMPP", "Audit", "Optimisation"],
-    links: [
-      { label: "Page mahara", href: "https://iutdijon.u-bourgogne.fr/mahara/view/view.php?profile=valentinmalindi&page=sae-4-01-developpement-d-une-application-complexe" },
-      { label: "Voir le projet sur Github", href: "https://github.com/MalindiVal/S4_B1_TechnoLab_Taskstep" },
-    ],
-  },
-  {
-    title: "SRB2 Kart Turbo Mod",
-    image: { src: "srb2k.webp", width: 1200, height: 750 },
-    description: "Un mod pour le jeu SRB2 Kart, ajoutant de nouvelles fonctionnalités et améliorations au gameplay. Ce mod vise à enrichir l'expérience de jeu pour les joueurs de SRB2 Kart.",
-    tags: ["Lua"],
-    links: [{ label: "Voir le projet sur Github", href: "https://github.com/MalindiVal/SRB2Kart-Turbo-Mode" }],
-  },
-  {
-    title: "RapportStage",
-    image: { src: "RapportStage.webp", width: 1200, height: 512 },
-    description:
-      "Une application Web qui permet de déposer et de consulter des rapports de stage. Cette application facilite la gestion et l'accès aux rapports de stage pour les étudiants et les enseignants. Réalisé dans le cadre d'un projet universitaire.",
-    tags: ["ASP.NET", "C#", "HTML/CSS/JS", "Docker"],
-    links: [
-      { label: "Page mahara", href: "https://iutdijon.u-bourgogne.fr/mahara/view/view.php?profile=valentinmalindi&page=sae-3-01-developpement-d-une-application" },
-      { label: "API sur Github", href: "https://github.com/MalindiVal/RapportIUT-API" },
-      { label: "Client sur Github", href: "https://github.com/MalindiVal/RapportIUT-Client" },
-    ],
-  },
-  {
-    title: "Portfolio",
-    image: { src: "portfolio.webp", width: 1200, height: 638 },
-    description:
-      "Le site que vous consultez : un site statique réalisé avec Astro et Tailwind CSS, responsive et animé dans le respect des préférences d'accessibilité. Il est construit et déployé automatiquement sur GitHub Pages par un workflow GitHub Actions à chaque mise à jour.",
-    tags: ["Astro", "Tailwind CSS", "TypeScript", "GitHub Actions", "CI/CD"],
-    links: [{ label: "Voir le projet sur Github", href: "https://github.com/MalindiVal/Portfolio-Astro" }],
-  },
-  {
-    title: "Go-Quick-Actu",
-    icons: ["go.svg", "docker.svg"],
-    description:
-      "API REST en Go qui agrège l'actualité de 10 médias français par flux RSS, analyse chaque article avec l'IA (mots-clés et sujet) et produit des synthèses multi-sources : les faits communs, puis l'angle choisi par chaque média.",
-    tags: ["Go", "Gin", "PostgreSQL", "RSS", "API Claude", "Docker", "GitHub Actions"],
-    links: [{ label: "Voir le projet sur Github", href: "https://github.com/MalindiVal/Go-Quick-Actu" }],
-  },
-  {
-    title: "JobRadar",
-    icons: ["python.svg", "fastapi.svg", "nextjs.svg"],
-    description:
-      "Application de veille d'offres d'alternance : collecte automatisée avec n8n, analyse et score de chaque offre par Claude (avec un repli sur un score par règles), notifications par e-mail et tableau de bord web.",
-    tags: ["Python", "FastAPI", "PostgreSQL", "n8n", "API Claude", "Next.js", "Docker"],
-    links: [
-      { label: "API sur Github", href: "https://github.com/MalindiVal/jobradar-backend" },
-      { label: "Client sur Github", href: "https://github.com/MalindiVal/jobradar-frontend" },
-    ],
-  },
-];
+const projects = await getProjects();
 
 // Nombre impair de projets : la dernière carte est centrée sur la ligne
 const centerLast = projects.length % 2 === 1;
@@ -110,23 +23,25 @@ const centerLast = projects.length % 2 === 1;
           data-reveal
           style={`--reveal-delay: ${(i % 2) * 120}ms`}
         >
-          {project.image ? (
-            <img src={`${base}/${project.image.src}`} width={project.image.width} height={project.image.height} alt={project.title} class="w-full h-48 object-cover" loading="lazy" decoding="async" />
-          ) : (
-            <div class="w-full h-48 flex items-center justify-center gap-6 bg-linear-to-br from-gray-800 to-emerald-950" aria-hidden="true">
-              {project.icons?.map((icon) => (
-                <img src={`${base}/icons/${icon}`} alt="" width="56" height="56" class="w-14 h-14" loading="lazy" decoding="async" />
-              ))}
-            </div>
-          )}
+          <ProjectVisual project={project} />
           <div class="p-6 flex flex-col flex-1">
-            <h2 class="text-xl font-semibold mb-2 text-white">{project.title}</h2>
+            <h2 class="text-xl font-semibold mb-1 text-white flex flex-wrap items-center gap-2">
+              {project.title}
+              {project.recent && <span class="bg-emerald-500 text-gray-900 px-2 py-0.5 rounded-full text-xs font-semibold">Récent</span>}
+            </h2>
+            {project.updatedAt && (
+              <p class="text-xs text-gray-500 mb-3">
+                Mis à jour en <time datetime={project.updatedAt.toISOString()}>{formatMonth(project.updatedAt)}</time>
+              </p>
+            )}
             <p class="text-gray-400 mb-4 flex-1">{project.description}</p>
-            <div class="flex flex-wrap gap-2 mb-4">
-              {project.tags.map((tag) => (
-                <span class="bg-emerald-700 text-white px-3 py-1 rounded-full text-xs">{tag}</span>
-              ))}
-            </div>
+            {project.tags.length > 0 && (
+              <div class="flex flex-wrap gap-2 mb-4">
+                {project.tags.map((tag) => (
+                  <span class="bg-emerald-700 text-white px-3 py-1 rounded-full text-xs">{tag}</span>
+                ))}
+              </div>
+            )}
             <div class="flex flex-wrap gap-4 text-sm">
               {project.links.map((link) => (
                 <a href={link.href} class="text-emerald-400 hover:text-emerald-300 hover:underline transition-colors duration-200" target="_blank" rel="noopener noreferrer">{link.label}</a>

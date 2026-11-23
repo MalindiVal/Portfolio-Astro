@@ -34,7 +34,10 @@ src/
 │   ├── Header.astro          # navigation (liste navItems) + menu mobile
 │   ├── Contact.astro, Footer.astro, Canva.astro (CV Canva intégré)
 │   ├── index/                # sections de l’accueil (Hero, Alternance, About, Projets, ProXP, Skills)
+│   ├── ProjectVisual.astro  # image ou icônes en tête d’une carte de projet
 │   ├── projects/, stages/, formation/
+├── data/projects.ts          # données des projets (voir « Projets »)
+├── lib/projects.ts           # tri et ajout des projets d’après l’API GitHub
 public/                       # images, icônes (public/icons/*.svg), CV PDF, photo de profil
 ```
 
@@ -72,6 +75,16 @@ public/                       # images, icônes (public/icons/*.svg), CV PDF, ph
 - `card-hover` : légère élévation au survol des cartes.
 - `animate-fade-up` (+ `--delay`) : animation d’entrée au chargement, réservée au hero.
 - Toute nouvelle animation doit être désactivée dans le bloc `@media (prefers-reduced-motion: reduce)` de `global.css`, et le contenu doit rester visible sans JavaScript.
+
+### Projets
+- Les projets sont décrits dans `src/data/projects.ts`, chacun avec la liste de ses dépôts (`repos`). `src/lib/projects.ts` lit l'activité de ces dépôts sur l'API GitHub au moment du build.
+- **Tri automatique** : du dernier push le plus récent au plus ancien. Un projet poussé depuis moins de `RECENT_DAYS` jours (90) a le badge « Récent ». L'accueil montre les `FEATURED_COUNT` projets les plus récents (texte `summary`, sinon `description`). `highlight: false` exclut un projet du badge et de l'accueil, par exemple ce portfolio qui est poussé en continu.
+- **Ajout automatique** : un dépôt public de MalindiVal qui porte le topic GitHub `portfolio` et qu'aucun `repos` ne cite déjà est ajouté avec son nom, sa description, sa langue (badge + icône de `public/icons/`) et ses topics. Pour lui donner un vrai titre, une image ou d'autres liens, le décrire dans `src/data/projects.ts`.
+- **Mise à jour** : le site est reconstruit chaque jour à 5 h UTC (`schedule` dans `astro.yml`), à chaque push sur `main` et à la main depuis l'onglet Actions. Pour une reconstruction immédiate depuis un autre dépôt, envoyer un événement `repository_dispatch` de type `projet-mis-a-jour` avec un jeton qui a le droit `contents: write` sur Portfolio-Astro :
+  ```bash
+  gh api repos/MalindiVal/Portfolio-Astro/dispatches -f event_type=projet-mis-a-jour
+  ```
+- Si GitHub est injoignable (hors ligne, limite de 60 requêtes/h sans jeton), le build passe quand même : les projets de `src/data/projects.ts` sont affichés dans l'ordre du fichier, sans date. En CI, `GITHUB_TOKEN` relève cette limite. En `npm run dev`, les données sont lues une seule fois : relancer le serveur pour les rafraîchir.
 
 ### Contenu
 - Les listes répétitives (compétences, orientations, cursus…) sont décrites dans un tableau dans le frontmatter et rendues avec `.map()`.

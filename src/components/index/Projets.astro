@@ -1,35 +1,26 @@
 ---
-const base = import.meta.env.BASE_URL;
+// Les projets les plus récents d'après leur activité GitHub (voir src/lib/projects.ts)
+import ProjectVisual from "../ProjectVisual.astro";
+import { formatMonth, getFeaturedProjects } from "../../lib/projects";
 
-const featured = [
-  {
-    title: "AutomateDesign",
-    image: "automatedesign.webp",
-    width: 1200,
-    height: 726,
-    description:
-      "Outil de création de schémas d’automates en WPF, connecté à une API ASP.NET pour enregistrer et partager ses automates.",
-  },
-  {
-    title: "RapportStage",
-    image: "RapportStage.webp",
-    width: 1200,
-    height: 512,
-    description:
-      "Application web de dépôt et de consultation des rapports de stage pour les étudiants et les enseignants.",
-  },
-];
+const base = import.meta.env.BASE_URL;
+const featured = await getFeaturedProjects();
 ---
 <section id="projects" class="py-16 px-6 max-w-6xl mx-auto">
-  <h2 class="text-3xl font-bold mb-10 text-center text-emerald-400" data-reveal>Projets</h2>
+  <h2 class="text-3xl font-bold mb-10 text-center text-emerald-400" data-reveal>Projets récents</h2>
 
   <div class="grid md:grid-cols-2 gap-8">
     {featured.map((project, i) => (
       <article class="bg-gray-900 rounded-xl shadow-lg overflow-hidden flex flex-col card-hover" data-reveal style={`--reveal-delay: ${i * 120}ms`}>
-        <img src={`${base}/${project.image}`} alt={project.title} width={project.width} height={project.height} loading="lazy" decoding="async" class="w-full h-48 object-cover" />
+        <ProjectVisual project={project} />
         <div class="p-6 flex flex-col flex-1">
-          <h3 class="text-xl font-semibold mb-2">{project.title}</h3>
-          <p class="text-gray-400 flex-1">{project.description}</p>
+          <h3 class="text-xl font-semibold mb-1">{project.title}</h3>
+          {project.updatedAt && (
+            <p class="text-xs text-gray-500 mb-3">
+              Mis à jour en <time datetime={project.updatedAt.toISOString()}>{formatMonth(project.updatedAt)}</time>
+            </p>
+          )}
+          <p class="text-gray-400 flex-1">{project.summary ?? project.description}</p>
         </div>
       </article>
     ))}

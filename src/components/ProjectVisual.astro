@@ -1,0 +1,33 @@
+---
+// En-tête visuel d'une carte de projet : l'image du projet, sinon les icônes de ses technologies.
+import type { Project } from "../lib/projects";
+
+interface Props {
+  project: Project;
+}
+
+const { project } = Astro.props;
+const base = import.meta.env.BASE_URL;
+const icons = project.icons ?? [];
+---
+{project.image ? (
+  <img
+    src={`${base}/${project.image.src}`}
+    width={project.image.width}
+    height={project.image.height}
+    alt={project.title}
+    class="w-full h-48 object-cover"
+    loading="lazy"
+    decoding="async"
+  />
+) : (
+  <div class="w-full h-48 flex items-center justify-center gap-6 px-6 bg-linear-to-br from-gray-800 to-emerald-950" aria-hidden="true">
+    {icons.length > 0 ? (
+      icons.map((icon) => (
+        <img src={`${base}/icons/${icon}`} alt="" width="56" height="56" class="w-14 h-14" loading="lazy" decoding="async" />
+      ))
+    ) : (
+      <span class="text-2xl font-bold text-emerald-400 text-center break-words">{project.title}</span>
+    )}
+  </div>
+)}
